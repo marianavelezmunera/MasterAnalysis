@@ -1,0 +1,52 @@
+# Data 
+
+# Upload phylloseq
+
+bacterias<-qza_to_phyloseq(features = "TablaDADA2Bacterias.qza",tree="ArbolRootedBacterias.qza",taxonomy = "TaxonomiaBacterias.qza")
+metadatos_bacterias <- read_excel("metadatos_bacterias_completos.xlsx")
+View(metadatos_bacterias)
+
+
+# Data format
+metadatos_bacterias<-as.data.frame(metadatos_bacterias)
+colnames(metadatos_bacterias)[1]<-"id"
+rownames(metadatos_bacterias)<-metadatos_bacterias$id
+
+metadatos_bacterias$Parcela<-as.character(metadatos_bacterias$Parcela)
+metadatos_bacterias$Altitud<-as.character(metadatos_bacterias$Altitud)
+
+metadatos_bacterias<-metadatos_bacterias[,-c(5:7,9,21:25)]
+
+# Missing data replace by predicted data and variables name change
+metadatos_bacterias[3,25]<-10
+colnames(metadatos_bacterias)[25]<-"MO"
+metadatos_bacterias[22,25]<-9
+colnames(metadatos_bacterias)[35]<-"NO3"
+colnames(metadatos_bacterias)[36]<-"NH4"
+
+sample_data(bacterias)<-metadatos_bacterias
+
+
+# R objects for ASV table and taxonomy
+
+ASV_bacterias<-as.data.frame(otu_table(bacterias))
+taxonomy_bacterias<-as.data.frame(tax_table(bacterias))
+
+# Filters
+unique(taxonomy$Phylum)
+unique(taxonomy$Kingdom)
+
+# Subset without control samples
+
+bacterias_bien<-subset_samples(bacterias,ID_individuo!="Control")
+
+bacterias_bien
+
+# Subset por muestra
+bacterias_rare@sam_data[bacterias_rare@sam_data=="Filosfera"]<-"Phyllosphere"
+bacterias_rare@sam_data[bacterias_rare@sam_data=="Rizosfera"]<-"Rhizosphere"
+bacterias_rare@sam_data[bacterias_rare@sam_data=="Suelo"]<-"Soil"
+
+bacterias_filosfera<-subset_samples(bacterias_rare,Tipo_muestra=="Phyllosphere")
+bacterias_suelo<-subset_samples(bacterias_rare,Tipo_muestra=="Soil")
+bacterias_rizosfera<-subset_samples(bacterias_rare,Tipo_muestra=="Rhizosphere")
