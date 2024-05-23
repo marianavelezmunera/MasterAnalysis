@@ -89,3 +89,9 @@ rda_plot
 # Ambiente
 
 ambiente
+
+# ANCOM
+
+plot_ancom_total_filo<-(ancom_plot_bacterias_filo/ancom_plot_hongos_filo)
+plot_ancom_total_rizo<-(ancom_plot_bacterias_rizo/ancom_plot_hongos_rizo)
+plot_ancom_total_filo

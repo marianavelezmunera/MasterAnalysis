@@ -5,7 +5,7 @@
 ANCOM_filo_family<-ancombc2(hongos_filosfera,assay_name="counts",tax_level="Family",pseudo = 1,fix_formula="Altitud",group = "Altitud",alpha = 0.05)
 
 ANCOM_subset_filo<-ANCOM_filo_family$res
-ANCOM_subset_filo<-subset(ANCOM_subset_filo,diff_Altitud2007!="FALSE"| diff_Altitud2018!="FALSE"|diff_Altitud2178!="FALSE"|diff_Altitud2210!="FALSE"|`diff_(Intercept)`!="FALSE")
+ANCOM_subset_filo<-subset(ANCOM_subset_filo,diff_Altitud2007.y!="FALSE"| diff_Altitud2018.y!="FALSE"|diff_Altitud2178.y!="FALSE"|diff_Altitud2210.y!="FALSE"|`diff_(Intercept)`!="FALSE")
 
 ANCOM_subset_filo<-ANCOM_subset_filo[,1:6]
 ANCOM_subset_filo<-gather(ANCOM_subset_filo,`lfc_(Intercept)`,lfc_Altitud2007,lfc_Altitud2018,lfc_Altitud2178,lfc_Altitud2210,key="Elevation",value="LFC")

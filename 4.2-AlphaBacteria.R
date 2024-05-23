@@ -159,3 +159,4 @@ anova_obs_bacterias<-aov(observed~Tipo_muestra*Altitud,data=diversidad_alfa_bact
 summary(anova_obs_bacterias)
 TukeyHSD(aov(observed~Parcela*Tipo_muestra,data=diversidad_alfa_bacterias))
 
+
