@@ -7,7 +7,7 @@ sample_names(bacterias_rare_taxo)<-paste0(bacterias_rare_taxo@sam_data$Altitud,s
 
 bacterias_rare_taxo@sam_data$id<-paste0(bacterias_rare_taxo@sam_data$Altitud,sep="_",bacterias_rare_taxo@sam_data$id)
 
-total_bacterias<-microbiome::transform(aggregate_top_taxa2(subset_taxa(bacterias_rare_taxo,!is.na(Order)),"Class",top=15),"compositional")
+total_bacterias<-microbiome::transform(aggregate_top_taxa2(subset_taxa(bacterias_rare_taxo,!is.na(Class)),"Class",top=15),"compositional")
 
 
 plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitud")+

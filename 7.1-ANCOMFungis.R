@@ -1,6 +1,6 @@
 #Filosfera
 
-ancom_clase_hongos_filosfera<-ancombc(hongos_filosfera,assay_name = counts,tax_level = Class,group = Altitud,formula = Altitud)
+ancom_clase_hongos_filosfera<-ancombc(hongos_filosfera,assay_name = counts,tax_level = "Class",group = "Altitud",formula = "Altitud")
 
 ancom_subset_hongos_filo<-left_join(ancom_clase_hongos_filosfera$res$lfc,ancom_clase_hongos_filosfera$res$diff_abn, by="taxon")
 
