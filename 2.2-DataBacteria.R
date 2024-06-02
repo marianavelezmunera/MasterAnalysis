@@ -32,9 +32,6 @@ sample_data(bacterias)<-metadatos_bacterias
 ASV_bacterias<-as.data.frame(otu_table(bacterias))
 taxonomy_bacterias<-as.data.frame(tax_table(bacterias))
 
-# Filters
-unique(taxonomy$Phylum)
-unique(taxonomy$Kingdom)
 
 # Subset without control samples
 

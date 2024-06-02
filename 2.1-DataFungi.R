@@ -2,7 +2,8 @@
 
 # Upload phylloseq
 
-hongos<-qza_to_phyloseq(features = "TablaDADA2HongosForward.qza",tree="ArbolRootedHongos.qza",taxonomy = "TaxonomiaHongos.qza")
+hongos<-qza_to_phyloseq(features = "TablaDADA2HongosForward.qza",
+                        tree="ArbolRootedHongos.qza",taxonomy = "TaxonomiaHongos.qza")
 metadatos_hongos <- read_delim("metadatos_hongos.txt", 
                                delim = "\t", escape_double = FALSE, 
                                trim_ws = TRUE)

@@ -55,7 +55,7 @@ ancom_plot_bacterias_rizo<-ggplot(data=ancom_subset_bacterias_rizo,aes(x=taxon,y
   ))+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_fill_manual(values=moma.colors("Warhol",28),name="Phylum")+
+  scale_fill_manual(values=moma.colors("Warhol",29),name="Phylum")+
   theme(axis.text.x = element_blank())+
   theme(axis.title.x = element_blank())+
   ggtitle("c")+

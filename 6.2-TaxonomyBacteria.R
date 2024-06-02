@@ -17,3 +17,4 @@ plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitu
   ylab("Abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))
+display.all.moma()

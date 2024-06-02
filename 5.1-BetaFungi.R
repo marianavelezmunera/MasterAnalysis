@@ -90,6 +90,5 @@ anosim(wunifrac_filosfera_hongos,subset(metadatos_hongos,Tipo_muestra=="Filosfer
 # Rhizosphere
 anosim(wunifrac_rizosfera_hongos,subset(metadatos_hongos,Tipo_muestra=="Rizosfera")$Altitud,distance = "bray",permutations = 9999)
 
-# Core - microbiome
 
 

@@ -6,6 +6,7 @@ venn_hongos_datos<-hongos_meco$merge_samples(use_group = "Altitud")
 venn_hongos<- trans_venn$new(venn_hongos_datos, ratio = NULL)
 venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #Venn diagram per elevation
 
+
 compartido_elevation_hongos<-venn_hongos$data_details$`2210&1978&2178&2007&2018` #Shared ASVs in every elevation
 venn_hongos$tax_table$asv<-rownames(venn_hongos$tax_table)
 identidad_elevation_hongos<-subset(venn_hongos$tax_table,asv%in%compartido_elevation_hongos)
