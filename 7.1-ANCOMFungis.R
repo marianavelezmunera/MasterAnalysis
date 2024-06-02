@@ -25,8 +25,7 @@ ancom_plot_hongos_filo<-ggplot(data=ancom_subset_hongos_filo,aes(x=taxon,y=LFC,f
   theme(axis.text.x = element_blank())+
   theme(axis.title.x = element_blank())+
   ggtitle("b")+
-  theme(legend.key.size = unit(0.3,"cm"),
-        legend.text = element_text(size=8))
+  theme(legend.key.size = unit(0.3,"cm"))
 
 ancom_plot_hongos_filo
 # Rhizosphere

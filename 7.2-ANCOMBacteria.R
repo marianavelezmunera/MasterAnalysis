@@ -26,8 +26,7 @@ ancom_plot_bacterias_filo<-ggplot(data=ancom_subset_bacterias_filo,aes(x=taxon,y
   theme(axis.title.x = element_blank())+
   theme(legend.box.spacing = unit(0, "pt"))+
   ggtitle("a")+
-  theme(legend.key.size = unit(0.3,"cm"),
-        legend.text = element_text(size=8))
+  theme(legend.key.size = unit(0.3,"cm"))
 
 ancom_plot_bacterias_filo
 
