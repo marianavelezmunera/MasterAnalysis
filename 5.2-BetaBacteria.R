@@ -4,7 +4,7 @@
 
 unifrac_bacterias<-read_qza("unifrac_bacterias.qza")
 matriz_unifrac_bacterias<-as.matrix(unifrac_bacterias$data)
-matriz_unifrac_bacterias<-matriz_unifrac_bacterias[3:37,3:37]
+matriz_unifrac_bacterias<-matriz_unifrac_bacterias[1:35,1:35]
 unifrac_filosfera_bacterias<-matriz_unifrac_bacterias[1:15,1:15]
 unifrac_filosfera_bacterias<-as.dist(unifrac_filosfera_bacterias)
 unifrac_rizosfera_bacterias<-matriz_unifrac_bacterias[16:30,16:30]
@@ -13,7 +13,6 @@ matriz_unifrac_bacterias<-as.dist(matriz_unifrac_bacterias)
 
 bray_bacterias<-read_qza("bray_bacterias.qza")
 matriz_bray_bacterias<-as.matrix(bray_bacterias$data)
-matriz_bray_bacterias<-matriz_bray_bacterias[3:37,3:37]
 bray_filosfera_bacterias<-matriz_bray_bacterias[1:15,1:15]
 bray_filosfera_bacterias<-as.dist(bray_filosfera_bacterias)
 bray_rizosfera_bacterias<-matriz_bray_bacterias[16:30,16:30]
@@ -22,7 +21,6 @@ matriz_bray_bacterias<-as.dist(matriz_bray_bacterias)
 
 wunifrac_bacterias<-read_qza("wunifrac_bacterias.qza")
 matriz_wunifrac_bacterias<-as.matrix(wunifrac_bacterias$data)
-matriz_wunifrac_bacterias<-matriz_wunifrac_bacterias[3:37,3:37]
 wunifrac_filosfera_bacterias<-matriz_wunifrac_bacterias[1:15,1:15]
 wunifrac_filosfera_bacterias<-as.dist(wunifrac_filosfera_bacterias)
 wunifrac_rizosfera_bacterias<-matriz_wunifrac_bacterias[16:30,16:30]
