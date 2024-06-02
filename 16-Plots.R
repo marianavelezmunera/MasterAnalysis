@@ -85,7 +85,7 @@ core_plot_bacterias
 
 rda_plot<-rda_bacterias_plot+rda_hongos_plot+plot_layout(guides = "collect")
 rda_plot
-
+rda_hongos_plot
 # Ambiente
 
 ambiente
