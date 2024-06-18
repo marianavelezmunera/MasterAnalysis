@@ -60,7 +60,7 @@ hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sa
 bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_fill_manual(name="Order",values=moma.colors("Warhol",21))+
+  scale_fill_manual(name="Class",values=moma.colors("Warhol",21))+
   ylab("Abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
@@ -96,4 +96,4 @@ ancom_plot_hongos_filo
 
 plot_ancom_total_filo<-(ancom_plot_bacterias_filo/ancom_plot_hongos_filo)
 plot_ancom_total_rizo<-(ancom_plot_bacterias_rizo/ancom_plot_hongos_rizo)
-plot_ancom_total_rizo
+plot_ancom_total_filo

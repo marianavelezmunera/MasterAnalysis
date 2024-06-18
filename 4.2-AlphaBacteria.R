@@ -148,6 +148,7 @@ ggplot(data = diversidad_alfa_bacterias,aes(x=Altitud,y=diversity_shannon,fill=T
 anova_shannon_bacterias<-aov(diversity_shannon~Tipo_muestra*Altitud,data = diversidad_alfa_bacterias)
 summary(anova_shannon_bacterias)
 TukeyHSD(anova_shannon_bacterias)
+
 # Two way ANOVA Faith's PD
 
 anova_faith_bacterias<-aov(faith_pd~Tipo_muestra*Altitud,data = diversidad_alfa_bacterias)
