@@ -37,7 +37,8 @@ taxonomy_bacterias<-as.data.frame(tax_table(bacterias))
 
 bacterias_bien<-subset_samples(bacterias,ID_individuo!="Control")
 
-bacterias_bien
+bacterias_bien<-subset_samples(bacterias,id!="BF5A")
+bacterias_bien<-subset_samples(bacterias,id!="BF5C")
 
 # Subset por muestra
 bacterias_rare@sam_data[bacterias_rare@sam_data=="Filosfera"]<-"Phyllosphere"

@@ -18,10 +18,11 @@ shannon_bacterias<-ggplot(data = diversidad_alfa_bacterias,aes(x=Altitud,y=diver
   theme(legend.position = "bottom")+
   scale_fill_manual(name="Sample type", label=c("Phyllosphere","Rhizosphere","Bulk soil"),values=moma.colors("Warhol",3))+
   ggtitle("a")
-
 alpha_total<-shannon_bacterias+shannon_hongos+
   plot_layout(guides = "collect",axis_titles = "collect") & theme(legend.position = "bottom")
 alpha_total
+
+shannon_bacterias
 
 rm(alpha_bacterias,alpha_hongos)
 
@@ -45,7 +46,7 @@ beta_total<-unifrac_bacterias_plot+unifrac_hongos_plot+
   plot_layout(guides = "collect")
 beta_total
 
-
+unifrac_bacterias_plot
 # Taxonomy
 
 hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sample.sort = "Altitud")+
@@ -72,6 +73,8 @@ taxonomy_plot
 
 venn_plot_bacterias_elevation<-venn_bacterias$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
 
+
+
 venn_plot_hongos_elevation<- venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
 
 venn_plot_bacterias_sample<-venn_bacterias_sample$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
@@ -91,6 +94,8 @@ rda_hongos_plot
 ambiente
 
 # ANCOM
+
+ancom_plot_bacterias_filo
 
 ancom_plot_hongos_filo
 
