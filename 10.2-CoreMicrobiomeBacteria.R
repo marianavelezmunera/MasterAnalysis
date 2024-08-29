@@ -17,7 +17,7 @@ ggplot(data = identidad_elevation_bacterias,aes(x=fct_infreq(Class),fill=Class))
   theme(axis.text.x = element_blank())+
   theme(axis.title.x =element_blank())+
   ylab("ASVs number")+
-  scale_fill_manual(values = moma.colors("Warhol",31),name="Class")
+  scale_fill_manual(values = moma.colors("Warhol",33),name="Class")
 
 # By sample
 

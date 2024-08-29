@@ -11,7 +11,7 @@ sample_names(hongos_rare_taxo)<-paste0(hongos_rare_taxo@sam_data$Altitud,sep="_"
 
 hongos_rare_taxo@sam_data$id<-paste0(hongos_rare_taxo@sam_data$Altitud,sep="_",hongos_rare_taxo@sam_data$id)
 
-total_hongos<-microbiome::transform(aggregate_top_taxa2(subset_taxa(hongos_rare_taxo,!is.na(Order)),"Class",top=10),"compositional")
+total_hongos<-microbiome::transform(aggregate_top_taxa2(subset_taxa(hongos_rare_taxo,!is.na(Class)),"Class",top=10),"compositional")
 
 total_hongos@sam_data[total_hongos@sam_data=="Filosfera"]<-"Phyllosphere"
 total_hongos@sam_data[total_hongos@sam_data=="Rizosfera"]<-"Rhizosphere"
