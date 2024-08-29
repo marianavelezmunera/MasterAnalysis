@@ -24,6 +24,8 @@ metadatos_bacterias[22,25]<-9
 colnames(metadatos_bacterias)[35]<-"NO3"
 colnames(metadatos_bacterias)[36]<-"NH4"
 
+metadatos_bacterias<-subset(metadatos_bacterias,id!="BF5A")
+metadatos_bacterias<-subset(metadatos_bacterias,id!="BF5C")
 sample_data(bacterias)<-metadatos_bacterias
 
 

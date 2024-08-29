@@ -4,7 +4,6 @@ diversidad_alfa_bacterias<-alpha(bacterias_rare,index = "all")
 faith_pd_bacterias<-read_qza("faith_pd_vector_bacterias.qza")
 FaithsPD_bacterias<-as.data.frame(faith_pd_bacterias$data)
 FaithsPD_bacterias$id<-rownames(FaithsPD_bacterias)
-FaithsPD_bacterias<-as.data.frame(FaithsPD_bacterias[-c(1:2),])
 diversidad_alfa_bacterias$id<-rownames(diversidad_alfa_bacterias)
 diversidad_alfa_bacterias<-left_join(diversidad_alfa_bacterias,FaithsPD_bacterias,by="id")
 
@@ -123,6 +122,16 @@ ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Filosfera"),aes(x=
   scale_fill_manual(values=moma.colors("Warhol",5))
 
 # Full plots (elevation+sample type)
+
+# Obs
+
+ggplot(data = diversidad_alfa_bacterias,aes(x=Altitud,y=observed,fill=Tipo_muestra))+
+  geom_boxplot(color="black")+
+  theme_biome_utils()+
+  xlab("Elevation")+ylab("Observed")+
+  theme(legend.position = "bottom")+
+  scale_fill_manual(name="Sample type",values=moma.colors("Warhol",3),label=c("Phyllosphere","Rhizosphere","Bulk soil"))
+
 # Faith's PD
 
 ggplot(data = diversidad_alfa_bacterias,aes(x=Altitud,y=faith_pd,fill=Tipo_muestra))+
@@ -158,6 +167,6 @@ summary(anova_faith_bacterias)
 
 anova_obs_bacterias<-aov(observed~Tipo_muestra*Altitud,data=diversidad_alfa_bacterias)
 summary(anova_obs_bacterias)
-TukeyHSD(aov(observed~Parcela*Tipo_muestra,data=diversidad_alfa_bacterias))
+# TukeyHSD(aov(observed~Parcela*Tipo_muestra,data=diversidad_alfa_bacterias))
 
 

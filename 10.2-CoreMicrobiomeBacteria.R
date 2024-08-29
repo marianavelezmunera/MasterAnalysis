@@ -6,6 +6,11 @@ venn_bacterias_datos<-bacterias_meco$merge_samples(use_group = "Altitud")
 venn_bacterias<- trans_venn$new(venn_bacterias_datos, ratio = NULL)
 venn_bacterias$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #Venn diagram per elevation
 
+venn_bacterias_genus_datos<-bacterias_meco$merge_taxa(taxa="Genus")
+venn_bacterias_genus_datos<-venn_bacterias_genus_datos$merge_samples(use_group = "Altitud")
+venn_bacterias_genus<-trans_venn$new(venn_bacterias_genus_datos,ratio = NULL)
+venn_bacterias_genus$plot_venn(color_circle = moma.colors("Warhol",5))
+
 compartido_elevation_bacterias<-venn_bacterias$data_details$`2210&1978&2178&2007&2018` #Shared ASVs in every elevation
 venn_bacterias$tax_table$asv<-rownames(venn_bacterias$tax_table)
 identidad_elevation_bacterias<-subset(venn_bacterias$tax_table,asv%in%compartido_elevation_bacterias)
@@ -25,7 +30,7 @@ ggplot(data = identidad_elevation_bacterias,aes(x=fct_infreq(Class),fill=Class))
 venn_bacterias_sample<-bacterias_meco$merge_samples(use_group = "Tipo_muestra")
 venn_bacterias_sample<- trans_venn$new(venn_bacterias_sample, ratio = NULL)
 venn_bacterias_sample$plot_venn(color_circle = moma.colors("Warhol",3),linesize = 2)
-venn_bacterias_sample$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
+
 
 compartido_sample_bacterias<-venn_bacterias_sample$data_details$`Phyllosphere&Rhizosphere&Soil` 
 #Shared ASVs in every sample type

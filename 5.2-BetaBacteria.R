@@ -66,7 +66,7 @@ adonis2(matriz_unifrac_bacterias ~ Tipo_muestra*Altitud, data = subset( metadato
 
 adonis2(matriz_wunifrac_bacterias~Tipo_muestra*Altitud,data = subset( metadatos_bacterias,ID_individuo!="Control"))
 
-# ANOSIMs 
+#ANOSIMs
 
 
 # Phyllosphere
