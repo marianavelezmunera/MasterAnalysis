@@ -26,7 +26,7 @@ ancom_plot_bacterias_filo<-ggplot(data=ancom_subset_bacterias_filo,aes(x=taxon,y
   theme(axis.text.x = element_blank())+
   theme(axis.title.x = element_blank())+
   theme(legend.box.spacing = unit(0, "pt"))+
-  ggtitle("a")+
+  ggtitle("a.")+
   theme(legend.key.size = unit(0.3,"cm"))
 
 ancom_plot_bacterias_filo
@@ -59,6 +59,6 @@ ancom_plot_bacterias_rizo<-ggplot(data=ancom_subset_bacterias_rizo,aes(x=taxon,y
   scale_fill_manual(values=moma.colors("Warhol",28),name="Phylum")+
   theme(axis.text.x = element_blank())+
   theme(axis.title.x = element_blank())+
-  ggtitle("c")+
+  ggtitle("c.")+
   theme(legend.key.size = unit(0.3,"cm"))
 ancom_plot_bacterias_rizo

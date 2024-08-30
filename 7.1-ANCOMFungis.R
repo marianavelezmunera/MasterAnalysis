@@ -24,7 +24,7 @@ ancom_plot_hongos_filo<-ggplot(data=ancom_subset_hongos_filo,aes(x=taxon,y=LFC,f
   scale_fill_manual(values=moma.colors("Warhol",16),name="Class")+
   theme(axis.text.x = element_blank())+
   theme(axis.title.x = element_blank())+
-  ggtitle("b")+
+  ggtitle("b.")+
   theme(legend.key.size = unit(0.3,"cm"))
 
 ancom_plot_hongos_filo
@@ -54,6 +54,6 @@ ancom_plot_hongos_rizo<-ggplot(data=ancom_subset_hongos_rizo,aes(x=taxon,y=LFC,f
   theme(legend.position = "right")+
   scale_fill_manual(values=moma.colors("Warhol",26),name="Class")+
   theme(axis.text.x = element_blank())+
-  theme(axis.title.x = element_blank())+ggtitle("d")+
+  theme(axis.title.x = element_blank())+ggtitle("d.")+
   theme(legend.key.size = unit(0.3,"cm"))
 ancom_plot_hongos_rizo

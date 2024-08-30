@@ -31,5 +31,5 @@ rda_hongos_plot<-rda_hongos %>%
              scale_shape_manual(name="Sample type",values = c(Phyllosphere = "circle", Rhizosphere = "triangle",Soil = "square"))+
   scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
   theme_biome_utils()+
-  ggtitle("b")
+  ggtitle("b.")
 rda_hongos_plot

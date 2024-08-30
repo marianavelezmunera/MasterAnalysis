@@ -10,7 +10,7 @@ rda_bacterias_data<- rda_bacterias %>%
     constraints = colnames(rda_bacterias@sam_data)[c(18,20,22:37)],method = "RDA",
     scale_cc = FALSE) %>% 
   ord_get()
-
+rda_bacterias_data
 clases_rda_bacterias<-as.data.frame(total_bacterias@tax_table)
 clases_rda_bacterias
 rda_bacterias@sam_data$Altitud_num<-as.numeric(rda_bacterias@sam_data$Altitud)
@@ -28,6 +28,6 @@ rda_bacterias_plot<-rda_bacterias %>%
            tax_lab_style = tax_lab_style(size = 2.5))+
   scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
   theme_biome_utils()+
-  ggtitle("b")+
+  ggtitle("a.")+
   scale_shape_manual(name="Sample type",values = c(Phyllosphere = "circle", Rhizosphere = "triangle",Soil = "square"))
 rda_bacterias_plot

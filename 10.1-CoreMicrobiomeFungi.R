@@ -9,7 +9,7 @@ venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #Venn
 venn_hongos_genus_datos<-hongos_meco$merge_taxa(taxa="Genus")
 venn_hongos_genus_datos<-venn_hongos_genus_datos$merge_samples(use_group = "Altitud")
 venn_hongos_genus<-trans_venn$new(venn_hongos_genus_datos,ratio = NULL)
-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",5))
+venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",5), linesize = 2)
 
 compartido_elevation_hongos<-venn_hongos$data_details$`2210&1978&2178&2007&2018` #Shared ASVs in every elevation
 venn_hongos$tax_table$asv<-rownames(venn_hongos$tax_table)

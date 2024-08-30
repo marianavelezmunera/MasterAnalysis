@@ -106,20 +106,17 @@ venn_plot_bacterias_sample<-venn_bacterias_sample$plot_venn(color_circle = moma.
 
 venn_plot_hongos_sample<- venn_hongos_sample$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
 
-venn_plot_hongos_2<-venn_plot_hongos_elevation+plot_annotation(
-  title = "b. Fungal core microbiome")
-venn_plot_bacterias_2<-venn_plot_bacterias_elevation+plot_annotation(
-  title = "a. Bacterial core microbiome")
+venn_plot_hongos<-venn_hongos_genus_plot+plot_annotation(
+  title = "b")
+venn_plot_bacterias<-venn_bacterias_genus_plot+plot_annotation(
+  title = "a")
 
-venn_plot_bacterias_2
-venn_plot_hongos_2
+venn_plot_bacterias
+venn_plot_hongos
 
 
+core_plot<-venn_plot_bacterias+venn_plot_hongos
 core_plot
-core_plot_hongos<-venn_plot_hongos_sample+venn_plot_hongos_elevation
-core_plot
-core_plot_bacterias
-
 rda_plot<-rda_bacterias_plot+rda_hongos_plot+plot_layout(guides = "collect")
 rda_plot
 rda_hongos_plot
