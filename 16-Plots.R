@@ -5,34 +5,34 @@
 shannon_hongos_filo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
   geom_boxplot(color="black")+
   theme_biome_utils()+
-  xlab("Elevation")+ylab("H") +
+  xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
   scale_fill_manual(values=moma.colors("Warhol",5))+
-  ggtitle("c. Fungal phyllosphere")
+  ggtitle("c.")
 
 shannon_hongos_rizo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
   geom_boxplot(color="black")+
   theme_biome_utils()+
-  xlab("Elevation")+ylab("H") +
+  xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
   scale_fill_manual(values=moma.colors("Warhol",5))+
-  ggtitle("d. Fungal rhizosphere")
+  ggtitle("d.")
 
 shannon_bacterias_filo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
   geom_boxplot(color="black")+
   theme_biome_utils()+
-  xlab("Elevation")+ylab("H") +
+  xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
   scale_fill_manual(values=moma.colors("Warhol",5))+
-  ggtitle("a. Bacterial phyllosphere")
+  ggtitle("a.")
 
 shannon_bacterias_rizo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
   geom_boxplot(color="black")+
   theme_biome_utils()+
-  xlab("Elevation")+ylab("H") +
+  xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
   scale_fill_manual(values=moma.colors("Warhol",5))+
-  ggtitle("b. Bacterial rhizosphere")
+  ggtitle("b.")
 
 
 alpha_total<-shannon_bacterias_filo+shannon_bacterias_rizo+shannon_hongos_filo+shannon_hongos_rizo+
@@ -51,7 +51,7 @@ unifrac_bacterias_plot<-plot_ordination(bacterias_rare,pcoa_unifrac_bacterias,sh
   theme(legend.position = "right")+
   scale_color_manual(name="Elevation",values=moma.colors("Althoff",5))+
   scale_shape(name="Sample type")+
-  ggtitle("a- Bacterial community")
+  ggtitle("a.")
 
 unifrac_hongos_plot<-plot_ordination(hongos_rare,pcoa_unifrac_hongos,shape = "Tipo_muestra",color="Altitud")+
   geom_point(size=2.5)+
@@ -59,7 +59,7 @@ unifrac_hongos_plot<-plot_ordination(hongos_rare,pcoa_unifrac_hongos,shape = "Ti
   theme(legend.position = "right")+
   scale_color_manual(name="Elevation",values=moma.colors("Althoff",5))+
   scale_shape(name="Sample type")+
-  ggtitle("b. Fungal community")
+  ggtitle("b.")
 
 beta_total<-unifrac_bacterias_plot+unifrac_hongos_plot+
   plot_layout(guides = "collect")
@@ -77,7 +77,7 @@ hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sa
   ylab("Relative abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
-  ggtitle("b. Fungal community")+
+  ggtitle("b.")+
   scale_x_discrete(labels=c("1978A","1978B","1978C","2007A","2007B","2007C","2018A","2018B","2018C","2178A","2178B","2178C","2210A","2210B","2210C","1978A","1978B","1978C","2007A","2007B","2007C","2018A","2018B","2018C","2178A","2178B","2178C","2210A","2210B","2210C","1978","2007","2018","2178","2210"))
 
 bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitud")+
@@ -87,7 +87,7 @@ bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestr
   ylab("Relative abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
-  ggtitle("a. Bacterial community")+
+  ggtitle("a.")+
   scale_x_discrete(labels=c("1978A","1978B","1978C","2007A","2007B","2007C","2018B","2178A","2178B","2178C","2210A","2210B","2210C","1978A","1978B","1978C","2007A","2007B","2007C","2018A","2018B","2018C","2178A","2178B","2178C","2210A","2210B","2210C","1978","2007","2018","2178","2210"))
 
 bacteria_taxonomy_plot
@@ -136,3 +136,4 @@ ancom_plot_hongos_filo
 plot_ancom_total_filo<-(ancom_plot_bacterias_filo/ancom_plot_hongos_filo)
 plot_ancom_total_rizo<-(ancom_plot_bacterias_rizo/ancom_plot_hongos_rizo)
 plot_ancom_total_filo
+plot_ancom_total_rizo
