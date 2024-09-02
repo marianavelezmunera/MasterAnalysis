@@ -11,19 +11,31 @@ venn_hongos_genus_datos<-venn_hongos_genus_datos$merge_samples(use_group = "Alti
 venn_hongos_genus<-trans_venn$new(venn_hongos_genus_datos,ratio = NULL)
 venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",5), linesize = 2)
 
-compartido_elevation_hongos<-venn_hongos$data_details$`2210&1978&2178&2007&2018` #Shared ASVs in every elevation
-venn_hongos$tax_table$asv<-rownames(venn_hongos$tax_table)
-identidad_elevation_hongos<-subset(venn_hongos$tax_table,asv%in%compartido_elevation_hongos)
 
-ggplot(data = identidad_elevation_hongos,aes(x=fct_infreq(Class),fill=Class))+
+c
+
+ggplot(data = identidad_elevation_hongos,aes(x=fct_infreq(Genus),fill=Genus))+
   geom_bar()+
   theme_biome_utils()+
   theme(legend.position = "right")+
   theme(axis.text.x = element_blank())+
   theme(axis.title.x =element_blank())+
   ylab("ASVs number")+
-  scale_fill_manual(values = moma.colors("Warhol",15),name="Class",labels=c("NA","Agaricomycetes","Arthoniomycetes","Dothideomycetes","Eurotiomycetes","Lecanoromycetes","Leotiomycetes","Malasseziomycetes","Microbotryomycetes","Mortierellomycetes","Orbiliomycetes","Saccharomycetes","Sordariomycetes","Taphrinomycetes","Tremellomycetes"))
+  scale_fill_manual(values = moma.colors("Warhol",245),name="Genus")
 
+otus_hongos_core<-venn_hongos_genus$otu_table
+otus_hongos_core$asv<-rownames(otus_hongos_core)
+
+otus_hongos_core<-subset(otus_hongos_core,asv%in%compartido_elevation_hongos)
+
+abundancias_hongos_core<-merge(otus_hongos_core,venn_hongos_genus$tax_table,by='row.names')
+
+unique(abundancias_hongos_core$Genus)
+
+abundancias_hongos_core<-abundancias_hongos_core[,c(1:6,13)]
+abundancias_hongos_core$total<-rowSums(abundancias_hongos_core[2:6])
+abundancias_hongos_core<-arrange(abundancias_hongos_core,total)
+abundancias_hongos_core1<-subset(abundancias_hongos_core,Genus!="g__")
 # By sample
 
 
