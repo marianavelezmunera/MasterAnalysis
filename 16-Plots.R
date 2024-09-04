@@ -70,25 +70,30 @@ display.all.moma()
 unifrac_bacterias_plot
 # Taxonomy
 
-hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sample.sort = "Altitud")+
+hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sample.sort = "Altitud",x.label = "label")+
   theme_biome_utils()+
   theme(legend.position = "right")+
   scale_fill_manual(name="Class",values=moma.colors("Warhol",11))+
   ylab("Relative abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
-  ggtitle("b.")+
-  scale_x_discrete(labels=c("1978A","1978B","1978C","2007A","2007B","2007C","2018A","2018B","2018C","2178A","2178B","2178C","2210A","2210B","2210C","1978A","1978B","1978C","2007A","2007B","2007C","2018A","2018B","2018C","2178A","2178B","2178C","2210A","2210B","2210C","1978","2007","2018","2178","2210"))
+  ggtitle("b.")
 
-bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitud")+
+
+total_hongos@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007C","2018A","2018B","2018C","1978","2007","2018","2178","2210")
+
+hongos_taxonomy_plot
+
+total_bacterias@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018B","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","1978","2007","2018","2178","2210")
+
+bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitud",x.label = "label")+
   theme_biome_utils()+
   theme(legend.position = "right")+
   scale_fill_manual(name="Class",values=moma.colors("Warhol",21))+
   ylab("Relative abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
-  ggtitle("a.")+
-  scale_x_discrete(labels=c("1978A","1978B","1978C","2007A","2007B","2007C","2018B","2178A","2178B","2178C","2210A","2210B","2210C","1978A","1978B","1978C","2007A","2007B","2007C","2018A","2018B","2018C","2178A","2178B","2178C","2210A","2210B","2210C","1978","2007","2018","2178","2210"))
+  ggtitle("a.")
 
 bacteria_taxonomy_plot
 hongos_taxonomy_plot
