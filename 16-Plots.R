@@ -2,8 +2,8 @@
 
 # Diversidad alfa
 
-shannon_hongos_filo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
-  geom_boxplot(color="black")+
+shannon_hongos_filo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,group=Altitud))+
+  geom_point(aes(fill=Altitud),shape=21,size=5,colour="black")+
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
@@ -11,7 +11,7 @@ shannon_hongos_filo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="
   ggtitle("c.")
 
 shannon_hongos_rizo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
-  geom_boxplot(color="black")+
+  geom_point(aes(fill=Altitud),shape=21,size=5,colour="black")+
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
@@ -19,7 +19,7 @@ shannon_hongos_rizo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="
   ggtitle("d.")
 
 shannon_bacterias_filo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
-  geom_boxplot(color="black")+
+  geom_point(aes(fill=Altitud),shape=21,size=5,colour="black")+
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
@@ -27,7 +27,7 @@ shannon_bacterias_filo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_mues
   ggtitle("a.")
 
 shannon_bacterias_rizo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
-  geom_boxplot(color="black")+
+  geom_point(aes(fill=Altitud),shape=21,size=5,colour="black")+
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
@@ -45,23 +45,35 @@ rm(alpha_bacterias,alpha_hongos)
 
 # Diversidad beta
 
-unifrac_bacterias_plot<-plot_ordination(bacterias_rare,pcoa_unifrac_bacterias,shape = "Tipo_muestra",color="Altitud")+
-  geom_point(size=2.5)+
+plot_beta_hongos_filo<-plot_ordination(hongos_filosfera,pcoa_unifrac_hongos_filosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_color_manual(name="Elevation",values=moma.colors("Althoff",5))+
-  scale_shape(name="Sample type")+
-  ggtitle("a.")
+  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  ggtitle("c.")+
+  geom_point(size=2.5)
 
-unifrac_hongos_plot<-plot_ordination(hongos_rare,pcoa_unifrac_hongos,shape = "Tipo_muestra",color="Altitud")+
-  geom_point(size=2.5)+
+plot_beta_hongos_rizo<-plot_ordination(hongos_rizosfera,pcoa_unifrac_hongos_rizosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_color_manual(name="Elevation",values=moma.colors("Althoff",5))+
-  scale_shape(name="Sample type")+
-  ggtitle("b.")
+  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  ggtitle("d.")+
+  geom_point(size=2.5)
 
-beta_total<-unifrac_bacterias_plot+unifrac_hongos_plot+
+plot_beta_bacterias_filo<-plot_ordination(bacterias_filosfera,pcoa_unifrac_bacterias_filosfera,color="Altitud")+
+  theme_biome_utils()+
+  theme(legend.position = "right")+
+  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  ggtitle("a.")+
+  geom_point(size=2.5)
+
+plot_beta_bacterias_rizo<-plot_ordination(bacterias_rizosfera,pcoa_unifrac_bacterias_rizosfera,color="Altitud")+
+  theme_biome_utils()+
+  theme(legend.position = "right")+
+  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  ggtitle("b.")+
+  geom_point(size=2.5)
+
+beta_total<-plot_beta_bacterias_filo+plot_beta_bacterias_rizo+plot_beta_hongos_filo+plot_beta_hongos_rizo+
   plot_layout(guides = "collect")
 beta_total
 
