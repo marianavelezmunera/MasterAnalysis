@@ -50,28 +50,28 @@ plot_beta_hongos_filo<-plot_ordination(hongos_filosfera,pcoa_unifrac_hongos_filo
   theme(legend.position = "right")+
   scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
   ggtitle("c.")+
-  geom_point(size=2.5)
+  geom_point(size=3)
 
 plot_beta_hongos_rizo<-plot_ordination(hongos_rizosfera,pcoa_unifrac_hongos_rizosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
   scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
   ggtitle("d.")+
-  geom_point(size=2.5)
+  geom_point(size=3)
 
 plot_beta_bacterias_filo<-plot_ordination(bacterias_filosfera,pcoa_unifrac_bacterias_filosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
   scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
   ggtitle("a.")+
-  geom_point(size=2.5)
+  geom_point(size=3)
 
 plot_beta_bacterias_rizo<-plot_ordination(bacterias_rizosfera,pcoa_unifrac_bacterias_rizosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
   scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
   ggtitle("b.")+
-  geom_point(size=2.5)
+  geom_point(size=3)
 
 beta_total<-plot_beta_bacterias_filo+plot_beta_bacterias_rizo+plot_beta_hongos_filo+plot_beta_hongos_rizo+
   plot_layout(guides = "collect")
@@ -132,7 +132,8 @@ venn_plot_bacterias
 venn_plot_hongos
 
 
-core_plot<-venn_plot_bacterias+venn_plot_hongos
+core_plot<-venn_bacterias_filo_plot+venn_bacterias_rizo_plot+venn_hongos_filo_plot+venn_hongos_rizo_plot
+
 core_plot
 rda_plot<-rda_bacterias_plot+rda_hongos_plot+plot_layout(guides = "collect")
 rda_plot
