@@ -12,8 +12,6 @@ venn_hongos_genus<-trans_venn$new(venn_hongos_genus_datos,ratio = NULL)
 venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",5), linesize = 2)
 
 
-c
-
 ggplot(data = identidad_elevation_hongos,aes(x=fct_infreq(Genus),fill=Genus))+
   geom_bar()+
   theme_biome_utils()+
