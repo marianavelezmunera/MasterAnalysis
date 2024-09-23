@@ -7,9 +7,9 @@ venn_hongos<- trans_venn$new(venn_hongos_datos, ratio = NULL)
 venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #Venn diagram per elevation
 
 venn_hongos_genus_datos<-hongos_meco$merge_taxa(taxa="Genus")
-venn_hongos_genus_datos<-venn_hongos_genus_datos$merge_samples(use_group = "Altitud")
+venn_hongos_genus_datos<-venn_hongos_genus_datos$merge_samples(use_group = "Tipo_muestra")
 venn_hongos_genus<-trans_venn$new(venn_hongos_genus_datos,ratio = NULL)
-venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",5), linesize = 2)
+venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",3), linesize = 2)
 
 
 ggplot(data = identidad_elevation_hongos,aes(x=fct_infreq(Genus),fill=Genus))+

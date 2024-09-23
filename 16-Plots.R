@@ -92,13 +92,13 @@ hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sa
   ggtitle("b.")
 
 
-total_hongos@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007C","2018A","2018B","2018C","1978","2007","2018","2178","2210")
+total_hongos@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
 
-hongos_taxonomy_plot
+View(total_bacterias@sam_data)
 
-total_bacterias@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018B","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","1978","2007","2018","2178","2210")
+total_bacterias@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018B","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
 
-bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra",sample.sort = "Altitud",x.label = "label")+
+bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra", sample.sort = "Altitud",x.label = "label")+
   theme_biome_utils()+
   theme(legend.position = "right")+
   scale_fill_manual(name="Class",values=moma.colors("Warhol",21))+
@@ -136,6 +136,7 @@ core_plot<-venn_bacterias_filo_plot+venn_bacterias_rizo_plot+venn_hongos_filo_pl
 
 core_plot
 rda_plot<-rda_bacterias_plot+rda_hongos_plot+plot_layout(guides = "collect")
+ggsave("vector_core.svg",core_plot,device = "svg",width=8.5,height=9,units="in")
 rda_plot
 rda_hongos_plot
 # Ambiente

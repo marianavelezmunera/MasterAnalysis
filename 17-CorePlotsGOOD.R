@@ -59,7 +59,7 @@ venn_hongos_rizo_datos$sample_table <- arrange(venn_hongos_rizo_datos$sample_tab
 venn_hongos_rizo_datos
 venn_hongos_rizo_core<-trans_venn$new(venn_hongos_rizo_datos,ratio = NULL)
 venn_hongos_rizo_plot<-venn_hongos_rizo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = moma.colors("Warhol",15)[3])
-venn_hongos_rizo_plot
+ggsave("core_rizo_hongos.svg",venn_hongos_rizo_plot,device = "svg")
 venn_hongos_rizo_core$data_summary %>% .[.[, 1] > 20, ]
 
 interseccion_hongos_rizo<- venn_hongos_rizo_core$plot_bar(left_plot = FALSE, bottom_height = 0.5, left_width = 0.15, up_bar_fill = "grey50", left_bar_fill = "grey50", bottom_point_color = "black",sort_samples = FALSE)
@@ -73,3 +73,6 @@ ggsave(filename="core_bacterias_filo.png",interseccion_bacterias_filo)
 ggsave(filename="core_bacterias_rizo.png",interseccion_bacterias_rizo)
 ggsave(filename="core_hongos_filo.png",interseccion_hongos_filo)
 ggsave(filename="core_hongos_rizo.png",interseccion_hongos_rizo)
+
+core_persample<-venn_bacterias_genus_plot+venn_hongos_genus_plot
+core_persample

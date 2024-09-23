@@ -48,6 +48,11 @@ cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$K)
 cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$NH4)
 cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$Ctotal)
 cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$CIC)
+cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$Ca)
+cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$Mg)
+cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$Na)
+cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$P)
+cor.test(as.numeric(metadatos_hongos$Altitud),metadatos_hongos$Ctotal)
 #ANOVAs per elevation
 
 summary(aov(T_prom_jul~Altitud,data=metadatos_hongos[1:34,]))
@@ -62,7 +67,7 @@ summary(aov(K~Altitud,data=metadatos_hongos[1:34,]))
 summary(aov(NO3~Altitud,data=metadatos_hongos[1:34,]))
 summary(aov(NH4~Altitud,data=metadatos_hongos[1:34,]))
 summary(aov(Fe~Altitud,data=metadatos_hongos[1:34,]))
-
+summary(aov(CIC~Altitud,data=metadatos_hongos[1:34,]))
 
 # Plots
 
@@ -90,16 +95,14 @@ d<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=pH,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config
 e<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=CE,fill=Altitud))+
-  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
+  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+ylab("EC")+
   ggtheme_config
-f<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=MO,fill=Altitud))+
-  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
-  ggtheme_config
+
 g<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=N,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config
 h<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=Ptotal,fill=Altitud))+
-  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
+  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+ylab("Total phosphorus")+
   ggtheme_config
 i<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=K,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
@@ -114,5 +117,5 @@ l<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=Fe,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config
 
-ambiente<-a+b+c+d+e+f+g+h+i+j+k+l
+ambiente<-a+b+c+d+e+g+h+i+j+k+l
 ambiente
