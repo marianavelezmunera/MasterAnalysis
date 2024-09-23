@@ -14,6 +14,30 @@ venn_bacterias_filo_core$data_summary %>% .[.[, 1] > 20, ]
 
 interseccion_bacterias_filo<- venn_bacterias_filo_core$plot_bar(left_plot = FALSE, bottom_height = 0.5, left_width = 0.15, up_bar_fill = "grey50", left_bar_fill = "grey50", bottom_point_color = "black",sort_samples = FALSE)
 interseccion_bacterias_filo
+
+
+compartido_bacterias_filo<-venn_bacterias_filo_core$data_details$`1978&2007&2018&2178&2210` 
+
+venn_bacterias_filo_core$tax_table$asv<-rownames(venn_bacterias_filo_core$tax_table)
+identidad_bacterias_filo<-subset(venn_bacterias_filo_core$tax_table,asv%in%compartido_bacterias_filo)
+
+otus_bacterias_filo_core<-venn_bacterias_filo_core$otu_table
+otus_bacterias_filo_core$asv<-rownames(otus_bacterias_filo_core)
+
+otus_bacterias_filo_core<-subset(otus_bacterias_filo_core,asv%in%compartido_bacterias_filo)
+
+abundancias_bacterias_filo_core<-merge(otus_bacterias_filo_core,venn_bacterias_filo_core$tax_table,by='row.names')
+
+View(abundancias_bacterias_filo_core)
+
+abundancias_bacterias_filo_core<-abundancias_bacterias_filo_core[,c(1:6,13)]
+abundancias_bacterias_filo_core$total<-rowSums(abundancias_bacterias_filo_core[2:6])
+abundancias_bacterias_filo_core<-arrange(abundancias_bacterias_filo_core,total)
+abundancias_bacterias_filo_core1<-subset(abundancias_bacterias_filo_core,Genus!="g__")
+
+
+View(abundancias_bacterias_filo_core1)
+
 # Bacterias rizosfera
 
 bacterias_meco_rizo<-phyloseq2meco(bacterias_rizosfera)
@@ -30,6 +54,31 @@ venn_bacterias_rizo_core$data_summary %>% .[.[, 1] > 20, ]
 
 interseccion_bacterias_rizo<- venn_bacterias_rizo_core$plot_bar(left_plot = FALSE, bottom_height = 0.5, left_width = 0.15, up_bar_fill = "grey50", left_bar_fill = "grey50", bottom_point_color = "black",sort_samples = FALSE)
 interseccion_bacterias_rizo
+
+
+compartido_bacterias_rizo<-venn_bacterias_rizo_core$data_details$`1978&2007&2018&2178&2210` 
+
+venn_bacterias_rizo_core$tax_table$asv<-rownames(venn_bacterias_rizo_core$tax_table)
+identidad_bacterias_rizo<-subset(venn_bacterias_rizo_core$tax_table,asv%in%compartido_bacterias_rizo)
+
+otus_bacterias_rizo_core<-venn_bacterias_rizo_core$otu_table
+otus_bacterias_rizo_core$asv<-rownames(otus_bacterias_rizo_core)
+
+otus_bacterias_rizo_core<-subset(otus_bacterias_rizo_core,asv%in%compartido_bacterias_rizo)
+
+abundancias_bacterias_rizo_core<-merge(otus_bacterias_rizo_core,venn_bacterias_rizo_core$tax_table,by='row.names')
+
+View(abundancias_bacterias_rizo_core)
+
+abundancias_bacterias_rizo_core<-abundancias_bacterias_rizo_core[,c(1:6,13)]
+abundancias_bacterias_rizo_core$total<-rowSums(abundancias_bacterias_rizo_core[2:6])
+abundancias_bacterias_rizo_core<-arrange(abundancias_bacterias_rizo_core,total)
+abundancias_bacterias_rizo_core1<-subset(abundancias_bacterias_rizo_core,Genus!="g__")
+
+
+View(abundancias_bacterias_rizo_core1)
+
+
 #Hongos filosfera
 
 
