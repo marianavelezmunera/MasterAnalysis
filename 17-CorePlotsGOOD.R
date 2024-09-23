@@ -97,6 +97,29 @@ venn_hongos_filo_core$data_summary %>% .[.[, 1] > 20, ]
 interseccion_hongos_filo<- venn_hongos_filo_core$plot_bar(left_plot = FALSE, bottom_height = 0.5, left_width = 0.15, up_bar_fill = "grey50", left_bar_fill = "grey50", bottom_point_color = "black",sort_samples = FALSE)
 interseccion_hongos_filo
 
+
+compartido_hongos_filo<-venn_hongos_filo_core$data_details$`1978&2007&2018&2178&2210` 
+
+venn_hongos_filo_core$tax_table$asv<-rownames(venn_hongos_filo_core$tax_table)
+identidad_hongos_filo<-subset(venn_hongos_filo_core$tax_table,asv%in%compartido_hongos_filo)
+
+otus_hongos_filo_core<-venn_hongos_filo_core$otu_table
+otus_hongos_filo_core$asv<-rownames(otus_hongos_filo_core)
+
+otus_hongos_filo_core<-subset(otus_hongos_filo_core,asv%in%compartido_hongos_filo)
+
+abundancias_hongos_filo_core<-merge(otus_hongos_filo_core,venn_hongos_filo_core$tax_table,by='row.names')
+
+View(abundancias_hongos_filo_core)
+
+abundancias_hongos_filo_core<-abundancias_hongos_filo_core[,c(1:6,13)]
+abundancias_hongos_filo_core$total<-rowSums(abundancias_hongos_filo_core[2:6])
+abundancias_hongos_filo_core<-arrange(abundancias_hongos_filo_core,total)
+abundancias_hongos_filo_core1<-subset(abundancias_hongos_filo_core,Genus!="g__")
+
+
+View(abundancias_hongos_filo_core1)
+
 # Hongos rizosfera
 
 hongos_meco_rizo<-phyloseq2meco(hongos_rizosfera)
@@ -125,3 +148,26 @@ ggsave(filename="core_hongos_rizo.png",interseccion_hongos_rizo)
 
 core_persample<-venn_bacterias_genus_plot+venn_hongos_genus_plot
 core_persample
+
+
+compartido_hongos_rizo<-venn_hongos_rizo_core$data_details$`1978&2007&2018&2178&2210` 
+
+venn_hongos_rizo_core$tax_table$asv<-rownames(venn_hongos_rizo_core$tax_table)
+identidad_hongos_rizo<-subset(venn_hongos_rizo_core$tax_table,asv%in%compartido_hongos_rizo)
+
+otus_hongos_rizo_core<-venn_hongos_rizo_core$otu_table
+otus_hongos_rizo_core$asv<-rownames(otus_hongos_rizo_core)
+
+otus_hongos_rizo_core<-subset(otus_hongos_rizo_core,asv%in%compartido_hongos_rizo)
+
+abundancias_hongos_rizo_core<-merge(otus_hongos_rizo_core,venn_hongos_rizo_core$tax_table,by='row.names')
+
+View(abundancias_hongos_rizo_core)
+
+abundancias_hongos_rizo_core<-abundancias_hongos_rizo_core[,c(1:6,13)]
+abundancias_hongos_rizo_core$total<-rowSums(abundancias_hongos_rizo_core[2:6])
+abundancias_hongos_rizo_core<-arrange(abundancias_hongos_rizo_core,total)
+abundancias_hongos_rizo_core1<-subset(abundancias_hongos_rizo_core,Genus!="g__")
+
+
+View(identidad_hongos_rizo)
