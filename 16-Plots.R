@@ -7,7 +7,7 @@ shannon_hongos_filo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
-  scale_fill_manual(values=moma.colors("Warhol",5))+
+  scale_fill_manual(values=colores)+
   ggtitle("c.")
 
 shannon_hongos_rizo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
@@ -15,7 +15,7 @@ shannon_hongos_rizo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
-  scale_fill_manual(values=moma.colors("Warhol",5))+
+  scale_fill_manual(values=colores)+
   ggtitle("d.")
 
 shannon_bacterias_filo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
@@ -23,7 +23,7 @@ shannon_bacterias_filo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_mues
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
-  scale_fill_manual(values=moma.colors("Warhol",5))+
+  scale_fill_manual(values=colores)+
   ggtitle("a.")
 
 shannon_bacterias_rizo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
@@ -31,7 +31,7 @@ shannon_bacterias_rizo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_mues
   theme_biome_utils()+
   xlab("Elevation (masl)")+ylab("H") +
   theme(legend.position = "none")+
-  scale_fill_manual(values=moma.colors("Warhol",5))+
+  scale_fill_manual(values=colores)+
   ggtitle("b.")
 
 
@@ -39,7 +39,7 @@ alpha_total<-shannon_bacterias_filo+shannon_bacterias_rizo+shannon_hongos_filo+s
   plot_layout(guides = "collect",axis_titles = "collect") & theme(legend.position = "none")
 alpha_total
 
-shannon_bacterias
+shannon_bacterias_rizo
 
 rm(alpha_bacterias,alpha_hongos)
 
@@ -48,28 +48,28 @@ rm(alpha_bacterias,alpha_hongos)
 plot_beta_hongos_filo<-plot_ordination(hongos_filosfera,pcoa_unifrac_hongos_filosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  scale_color_manual(name="Elevation",values=colores)+
   ggtitle("c.")+
   geom_point(size=3)
 
 plot_beta_hongos_rizo<-plot_ordination(hongos_rizosfera,pcoa_unifrac_hongos_rizosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  scale_color_manual(name="Elevation",values=colores)+
   ggtitle("d.")+
   geom_point(size=3)
 
 plot_beta_bacterias_filo<-plot_ordination(bacterias_filosfera,pcoa_unifrac_bacterias_filosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  scale_color_manual(name="Elevation",values=colores)+
   ggtitle("a.")+
   geom_point(size=3)
 
 plot_beta_bacterias_rizo<-plot_ordination(bacterias_rizosfera,pcoa_unifrac_bacterias_rizosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+
-  scale_color_manual(name="Elevation",values=moma.colors("Warhol",5))+
+  scale_color_manual(name="Elevation",values=colores)+
   ggtitle("b.")+
   geom_point(size=3)
 
@@ -89,7 +89,8 @@ hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sa
   ylab("Relative abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
-  ggtitle("b.")
+  ggtitle("b.")+
+  geom_bar(color="black",stat = "identity")
 
 
 total_hongos@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
@@ -105,7 +106,8 @@ bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestr
   ylab("Relative abundance")+
   xlab("Sample")+
   theme(axis.text = element_text(angle = 90))+
-  ggtitle("a.")
+  ggtitle("a.")+
+  geom_bar(color="black",stat = "identity")
 
 bacteria_taxonomy_plot
 hongos_taxonomy_plot

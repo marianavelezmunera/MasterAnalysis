@@ -17,7 +17,7 @@ ancom_subset_bacterias_filo<-gather(ancom_subset_bacterias_filo,LFC_1978,LFC_200
 
 ancom_subset_bacterias_filo<-subset(ancom_subset_bacterias_filo,taxon!="Pezizomycotina_cls_Incertae_sedis")
 ancom_plot_bacterias_filo<-ggplot(data=ancom_subset_bacterias_filo,aes(x=taxon,y=LFC,fill=taxon))+
-  geom_col()+
+  geom_col(color="black")+
   facet_wrap(~Elevation,ncol=5,nrow=1,labeller = labeller(Elevation=c("LFC_1978"="1978","LFC_2007"="2007","LFC_2018"="2018","LFC_2178"="2178","LFC_2210"="2210")
   ))+
   theme_biome_utils()+
@@ -51,7 +51,7 @@ ancom_subset_bacterias_rizo<-gather(ancom_subset_bacterias_rizo,LFC_1978,LFC_200
 
 
 ancom_plot_bacterias_rizo<-ggplot(data=ancom_subset_bacterias_rizo,aes(x=taxon,y=LFC,fill=taxon))+
-  geom_col()+
+  geom_col(color="black")+
   facet_wrap(~Elevation,ncol=5,nrow=1,labeller = labeller(Elevation=c("LFC_1978"="1978","LFC_2007"="2007","LFC_2018"="2018","LFC_2178"="2178","LFC_2210"="2210")
   ))+
   theme_biome_utils()+

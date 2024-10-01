@@ -74,7 +74,7 @@ summary(aov(CIC~Altitud,data=metadatos_hongos[1:34,]))
 ggtheme_config<-list(
   theme_biome_utils(),
   xlab("Elevation"),
-  scale_fill_manual(name="Elevation",values=moma.colors("Warhol",5)),
+  scale_fill_manual(name="Elevation",values=colores),
   theme(legend.position = "none"))
 
 a<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=T_prom_jul,fill=Altitud))+
