@@ -1,10 +1,107 @@
 # Core microbiome
 
-# Per elevation
-hongos_meco<-phyloseq2meco(hongos_rare) #Meco object
-venn_hongos_datos<-hongos_meco$merge_samples(use_group = "Altitud")
-venn_hongos<- trans_venn$new(venn_hongos_datos, ratio = NULL)
-venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #Venn diagram per elevation
+# Phyllosphere per elevation
+
+#Petal diagram
+hongos_meco_filo<-phyloseq2meco(hongos_filosfera)
+hongos_meco_filo$tidy_dataset()
+venn_hongos_filo_datos<-hongos_meco_filo$merge_taxa(taxa="Genus")
+venn_hongos_filo_datos<-venn_hongos_filo_datos$merge_samples(use_group = "Altitud")
+mode(venn_hongos_filo_datos$sample_table$SampleID)<-"numeric"
+venn_hongos_filo_datos$sample_table <- arrange(venn_hongos_filo_datos$sample_table, SampleID)
+venn_hongos_filo_datos
+venn_hongos_filo_core<-trans_venn$new(venn_hongos_filo_datos,ratio = NULL)
+venn_hongos_filo_plot<-venn_hongos_filo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = colores)
+venn_hongos_filo_plot
+
+#Bar plot with intersection samples
+
+venn_hongos_filo_core$data_summary %>% .[.[, 1] > 20, ]
+
+interseccion_hongos_filo<- venn_hongos_filo_core$plot_bar(left_plot = FALSE, bottom_height = 0.5, left_width = 0.15, up_bar_fill = "grey50", left_bar_fill = "grey50", bottom_point_color = "black",sort_samples = FALSE)
+interseccion_hongos_filo
+
+# Shared ASV table
+
+compartido_hongos_filo<-venn_hongos_filo_core$data_details$`1978&2007&2018&2178&2210` 
+
+venn_hongos_filo_core$tax_table$asv<-rownames(venn_hongos_filo_core$tax_table)
+identidad_hongos_filo<-subset(venn_hongos_filo_core$tax_table,asv%in%compartido_hongos_filo)
+
+otus_hongos_filo_core<-venn_hongos_filo_core$otu_table
+otus_hongos_filo_core$asv<-rownames(otus_hongos_filo_core)
+
+otus_hongos_filo_core<-subset(otus_hongos_filo_core,asv%in%compartido_hongos_filo)
+
+abundancias_hongos_filo_core<-merge(otus_hongos_filo_core,venn_hongos_filo_core$tax_table,by='row.names')
+
+View(abundancias_hongos_filo_core)
+
+abundancias_hongos_filo_core<-abundancias_hongos_filo_core[,c(1:6,13)]
+abundancias_hongos_filo_core$total<-rowSums(abundancias_hongos_filo_core[2:6])
+abundancias_hongos_filo_core<-arrange(abundancias_hongos_filo_core,total)
+abundancias_hongos_filo_core1<-subset(abundancias_hongos_filo_core,Genus!="g__")
+
+
+View(abundancias_hongos_filo_core1)
+
+#Rhizosphere
+
+hongos_meco_rizo<-phyloseq2meco(hongos_rizosfera)
+hongos_meco_rizo$tidy_dataset()
+venn_hongos_rizo_datos<-hongos_meco_rizo$merge_taxa(taxa="Genus")
+venn_hongos_rizo_datos<-venn_hongos_rizo_datos$merge_samples(use_group = "Altitud")
+mode(venn_hongos_rizo_datos$sample_table$SampleID)<-"numeric"
+venn_hongos_rizo_datos$sample_table <- arrange(venn_hongos_rizo_datos$sample_table, SampleID)
+venn_hongos_rizo_datos
+venn_hongos_rizo_core<-trans_venn$new(venn_hongos_rizo_datos,ratio = NULL)
+
+#Petal plot
+
+venn_hongos_rizo_plot<-venn_hongos_rizo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = colores)
+ggsave("core_rizo_hongos.svg",venn_hongos_rizo_plot,device = "svg")
+venn_hongos_rizo_core$data_summary %>% .[.[, 1] > 20, ]
+
+
+#Intersection bar plot
+
+interseccion_hongos_rizo<- venn_hongos_rizo_core$plot_bar(left_plot = FALSE, bottom_height = 0.5, left_width = 0.15, up_bar_fill = "grey50", left_bar_fill = "grey50", bottom_point_color = "black",sort_samples = FALSE)
+
+interseccion_bacterias_filo[[1]]<-interseccion_bacterias_filo[[1]]+ggtitle("a.")
+interseccion_bacterias_rizo[[1]]<-interseccion_bacterias_rizo[[1]]+ggtitle("b.")
+interseccion_hongos_filo[[1]]<-interseccion_hongos_filo[[1]]+ggtitle("c.")
+interseccion_hongos_rizo[[1]]<-interseccion_hongos_rizo[[1]]+ggtitle("d.")
+
+
+core_persample<-venn_bacterias_genus_plot+venn_hongos_genus_plot
+core_persample
+
+
+compartido_hongos_rizo<-venn_hongos_rizo_core$data_details$`1978&2007&2018&2178&2210` 
+
+venn_hongos_rizo_core$tax_table$asv<-rownames(venn_hongos_rizo_core$tax_table)
+identidad_hongos_rizo<-subset(venn_hongos_rizo_core$tax_table,asv%in%compartido_hongos_rizo)
+
+otus_hongos_rizo_core<-venn_hongos_rizo_core$otu_table
+otus_hongos_rizo_core$asv<-rownames(otus_hongos_rizo_core)
+
+otus_hongos_rizo_core<-subset(otus_hongos_rizo_core,asv%in%compartido_hongos_rizo)
+
+abundancias_hongos_rizo_core<-merge(otus_hongos_rizo_core,venn_hongos_rizo_core$tax_table,by='row.names')
+
+View(abundancias_hongos_rizo_core)
+
+abundancias_hongos_rizo_core<-abundancias_hongos_rizo_core[,c(1:6,13)]
+abundancias_hongos_rizo_core$total<-rowSums(abundancias_hongos_rizo_core[2:6])
+abundancias_hongos_rizo_core<-arrange(abundancias_hongos_rizo_core,total)
+abundancias_hongos_rizo_core1<-subset(abundancias_hongos_rizo_core,Genus!="g__")
+
+abundancias_bacterias_core1
+View(identidad_hongos_rizo)
+
+#Core by sample type
+
+hongos_meco<-phyloseq2meco(hongos_rare) 
 
 venn_hongos_genus_datos<-hongos_meco$merge_taxa(taxa="Genus")
 venn_hongos_genus_datos<-venn_hongos_genus_datos$merge_samples(use_group = "Tipo_muestra")
@@ -12,14 +109,7 @@ venn_hongos_genus<-trans_venn$new(venn_hongos_genus_datos,ratio = NULL)
 venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = c(colores[1],colores[3],colores[5]), linesize = 2)
 venn_hongos_genus_plot
 
-ggplot(data = identidad_elevation_hongos,aes(x=fct_infreq(Genus),fill=Genus))+
-  geom_bar()+
-  theme_biome_utils()+
-  theme(legend.position = "right")+
-  theme(axis.text.x = element_blank())+
-  theme(axis.title.x =element_blank())+
-  ylab("ASVs number")+
-  scale_fill_manual(values = moma.colors("Warhol",245),name="Genus")
+# Table ASV shared by sample type
 
 otus_hongos_core<-venn_hongos_genus$otu_table
 otus_hongos_core$asv<-rownames(otus_hongos_core)
@@ -34,26 +124,4 @@ abundancias_hongos_core<-abundancias_hongos_core[,c(1:6,13)]
 abundancias_hongos_core$total<-rowSums(abundancias_hongos_core[2:6])
 abundancias_hongos_core<-arrange(abundancias_hongos_core,total)
 abundancias_hongos_core1<-subset(abundancias_hongos_core,Genus!="g__")
-# By sample
-
-
-venn_hongos_sample<-hongos_meco$merge_samples(use_group = "Tipo_muestra")
-venn_hongos_sample<- trans_venn$new(venn_hongos_sample, ratio = NULL)
-venn_hongos_sample$plot_venn(color_circle = moma.colors("Warhol",3),linesize = 2)
-venn_hongos_sample$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
-
-compartido_sample_hongos<-venn_hongos_sample$data_details$`Phyllosphere&Rhizosphere&Soil` 
-#Shared ASVs in every sample type
-View(venn_hongos_sample$data_details)
-venn_hongos_sample$tax_table$asv<-rownames(venn_hongos_sample$tax_table)
-identidad_sample_hongos<-subset(venn_hongos_sample$tax_table,asv%in%compartido_sample_hongos)
-
-ggplot(data = identidad_sample_hongos,aes(x=fct_infreq(Class),fill=Class))+
-  geom_bar()+
-  theme_biome_utils()+
-  theme(legend.position = "right")+
-  theme(axis.text.x = element_blank())+
-  theme(axis.title.x =element_blank())+
-  ylab("ASVs number")+
-  scale_fill_manual(values = moma.colors("Warhol",15),name="Class",labels=c("NA","Agaricomycetes","Archaeorhizomycetes","Dothideomycetes","Eurotiomycetes","Leotiomycetes","Mortierellomycetes","Orbiliomycetes","Sordariomycetes","Tremellomycetes","Umbelopsidomycetes
-"))
+abundancias_hongos_core1
