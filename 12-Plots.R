@@ -1,6 +1,9 @@
 # Figures
 
-# Diversidad alfa
+colores<-c(moma.colors("Warhol",25)[15],moma.colors("Warhol",25)[13],moma.colors("Warhol",25)[19],moma.colors("Warhol",25)[18],moma.colors("Warhol",25)[21])
+colores
+
+# Alpha diversity 
 
 shannon_hongos_filo<-ggplot(data = subset(diversidad_alfa_hongos,Tipo_muestra=="Filosfera"),aes(x=Altitud, y=diversity_shannon,group=Altitud))+
   geom_point(aes(fill=Altitud),shape=21,size=5,colour="black")+
@@ -53,9 +56,7 @@ alpha_total
 
 shannon_bacterias_rizo
 
-rm(alpha_bacterias,alpha_hongos)
-
-# Diversidad beta
+# Beta diversity
 
 plot_beta_hongos_filo<-plot_ordination(hongos_filosfera,pcoa_unifrac_hongos_filosfera,color="Altitud")+
   theme_biome_utils()+
@@ -107,10 +108,11 @@ beta_total<-plot_beta_bacterias_filo+plot_beta_bacterias_rizo+plot_beta_hongos_f
   plot_layout(guides = "collect")
 beta_total
 
-display_all()
-display.all.moma()
-unifrac_bacterias_plot
 # Taxonomy
+
+total_hongos@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
+
+total_bacterias@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018B","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
 
 hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sample.sort = "Altitud",x.label = "label")+
   theme_biome_utils()+
@@ -127,13 +129,6 @@ hongos_taxonomy_plot<-plot_composition(total_hongos,group_by = "Tipo_muestra",sa
   ggtitle("b. Fungi")+
   theme(plot.title = element_text(size=14))+
   geom_bar(stat = "identity",color="black")
-
-
-total_hongos@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
-
-View(total_bacterias@sam_data)
-
-total_bacterias@sam_data$label<-c("2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018B","2210A","2210B","2210C","1978A","1978B","1978C","2178A","2178B","2178C","2007A","2007B","2007C","2018A","2018B","2018C","2210","1978","2178","2007","2018")
 
 bacteria_taxonomy_plot<-plot_composition(total_bacterias,group_by = "Tipo_muestra", sample.sort = "Altitud",x.label = "label")+
   theme_biome_utils()+
@@ -157,38 +152,7 @@ taxonomy_plot<-bacteria_taxonomy_plot/hongos_taxonomy_plot+
   plot_layout(axis_titles = "collect")
 taxonomy_plot
 
-ggsave("taxonomy_vector.svg")
-
-venn_plot_bacterias_elevation<-venn_bacterias$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
-
-
-
-venn_plot_hongos_elevation<- venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
-
-venn_plot_bacterias_sample<-venn_bacterias_sample$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
-
-venn_plot_hongos_sample<- venn_hongos_sample$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2)
-
-venn_plot_hongos<-venn_hongos_genus_plot+plot_annotation(
-  title = "b")
-venn_plot_bacterias<-venn_bacterias_genus_plot+plot_annotation(
-  title = "a")
-
-venn_plot_bacterias
-venn_plot_hongos
-
-
-core_plot<-venn_bacterias_filo_plot+venn_bacterias_rizo_plot+venn_hongos_filo_plot+venn_hongos_rizo_plot
-
-core_plot
-rda_plot<-rda_bacterias_plot+rda_hongos_plot+plot_layout(guides = "collect")
-ggsave("vector_core.svg",core_plot,device = "svg",width=15,height=9.5,units="in")
-
-ggsave("sample_core.svg",core_persample,device = "svg",width=15,height=9.5,units="in")
-rda_plot
-rda_hongos_plot
-ggsave("rda_vector.svg",rda_plot,device = "svg",width = 15,height = 9)
-# Ambiente
+# Environment
 
 ambiente
 
@@ -203,8 +167,20 @@ plot_ancom_total_rizo<-(ancom_plot_bacterias_rizo/ancom_plot_hongos_rizo)
 plot_ancom_total_filo
 plot_ancom_total_rizo
 
-#RDA
+# Redundancy Analysis
 
 rda_plot<-rda_bacterias_filo_plot+rda_bacterias_rizo_plot+rda_hongos_filo_plot+rda_hongos_rizo_plot+plot_layout(guides = "collect")
-rda_plot
 
+# Core microbiome
+
+# Per elevation
+
+core_plot<-venn_bacterias_filo_plot+venn_bacterias_rizo_plot+venn_hongos_filo_plot+venn_hongos_rizo_plot
+
+core_plot
+
+# Per sample
+
+
+core_persample<-venn_bacterias_genus_plot+venn_hongos_genus_plot
+core_persample
