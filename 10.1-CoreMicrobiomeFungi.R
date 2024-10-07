@@ -9,8 +9,8 @@ venn_hongos$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #Venn
 venn_hongos_genus_datos<-hongos_meco$merge_taxa(taxa="Genus")
 venn_hongos_genus_datos<-venn_hongos_genus_datos$merge_samples(use_group = "Tipo_muestra")
 venn_hongos_genus<-trans_venn$new(venn_hongos_genus_datos,ratio = NULL)
-venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = moma.colors("Warhol",3), linesize = 2)
-
+venn_hongos_genus_plot<-venn_hongos_genus$plot_venn(color_circle = c(colores[1],colores[3],colores[5]), linesize = 2)
+venn_hongos_genus_plot
 
 ggplot(data = identidad_elevation_hongos,aes(x=fct_infreq(Genus),fill=Genus))+
   geom_bar()+

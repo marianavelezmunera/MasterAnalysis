@@ -9,8 +9,8 @@ venn_bacterias$plot_venn(color_circle = moma.colors("Warhol",5),linesize = 2) #V
 venn_bacterias_genus_datos<-bacterias_meco$merge_taxa(taxa="Genus")
 venn_bacterias_genus_datos<-venn_bacterias_genus_datos$merge_samples(use_group = "Tipo_muestra")
 venn_bacterias_genus<-trans_venn$new(venn_bacterias_genus_datos,ratio = NULL)
-venn_bacterias_genus_plot<-venn_bacterias_genus$plot_venn(color_circle = moma.colors("Warhol",3))
-
+venn_bacterias_genus_plot<-venn_bacterias_genus$plot_venn(color_circle = c(colores[1],colores[3],colores[5]))
+venn_bacterias_genus_plot
 compartido_elevation_bacterias<-venn_bacterias_genus$data_details$`2210&1978&2178&2007&2018` #Shared ASV in every elevation
 venn_bacterias_genus$tax_table$asv<-rownames(venn_bacterias_genus$tax_table)
 identidad_elevation_bacterias<-subset(venn_bacterias_genus$tax_table,asv%in%compartido_elevation_bacterias)

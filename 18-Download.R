@@ -18,6 +18,11 @@ ggsave("bacteria_taxonomy.png",bacteria_taxonomy_plot,width=14,height = 7)
 hongos_taxonomy_plot
 ggsave("hongos_taxonomy.png",hongos_taxonomy_plot,width=14,height = 7)
 
+
+taxonomy_plot
+ggsave("taxonomy.svg",device="svg",taxonomy_plot,width=10,height = 10)
+
+
 #ambiente
 
 ambiente

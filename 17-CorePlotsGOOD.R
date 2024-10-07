@@ -7,7 +7,7 @@ venn_bacterias_filo_datos<-venn_bacterias_filo_datos$merge_samples(use_group = "
 mode(venn_bacterias_filo_datos$sample_table$SampleID)<-"numeric"
 venn_bacterias_filo_datos$sample_table <- arrange(venn_bacterias_filo_datos$sample_table, SampleID)
 venn_bacterias_filo_core<-trans_venn$new(venn_bacterias_filo_datos,ratio = NULL)
-venn_bacterias_filo_plot<-venn_bacterias_filo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = moma.colors("Warhol",15)[3])
+venn_bacterias_filo_plot<-venn_bacterias_filo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = colores)
 venn_bacterias_filo_plot
 venn_bacterias_filo_core
 venn_bacterias_filo_core$data_summary %>% .[.[, 1] > 20, ]
@@ -48,7 +48,7 @@ mode(venn_bacterias_rizo_datos$sample_table$SampleID)<-"numeric"
 venn_bacterias_rizo_datos$sample_table <- arrange(venn_bacterias_rizo_datos$sample_table, SampleID)
 venn_bacterias_rizo_datos
 venn_bacterias_rizo_core<-trans_venn$new(venn_bacterias_rizo_datos,ratio = NULL)
-venn_bacterias_rizo_plot<-venn_bacterias_rizo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = moma.colors("Warhol",15)[3])
+venn_bacterias_rizo_plot<-venn_bacterias_rizo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = colores)
 venn_bacterias_rizo_plot
 venn_bacterias_rizo_core$data_summary %>% .[.[, 1] > 20, ]
 
@@ -90,7 +90,7 @@ mode(venn_hongos_filo_datos$sample_table$SampleID)<-"numeric"
 venn_hongos_filo_datos$sample_table <- arrange(venn_hongos_filo_datos$sample_table, SampleID)
 venn_hongos_filo_datos
 venn_hongos_filo_core<-trans_venn$new(venn_hongos_filo_datos,ratio = NULL)
-venn_hongos_filo_plot<-venn_hongos_filo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = moma.colors("Warhol",15)[3])
+venn_hongos_filo_plot<-venn_hongos_filo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = colores)
 venn_hongos_filo_plot
 venn_hongos_filo_core$data_summary %>% .[.[, 1] > 20, ]
 
@@ -130,7 +130,7 @@ mode(venn_hongos_rizo_datos$sample_table$SampleID)<-"numeric"
 venn_hongos_rizo_datos$sample_table <- arrange(venn_hongos_rizo_datos$sample_table, SampleID)
 venn_hongos_rizo_datos
 venn_hongos_rizo_core<-trans_venn$new(venn_hongos_rizo_datos,ratio = NULL)
-venn_hongos_rizo_plot<-venn_hongos_rizo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = moma.colors("Warhol",15)[3])
+venn_hongos_rizo_plot<-venn_hongos_rizo_core$plot_venn(petal_plot = TRUE, petal_center_size = 50, petal_r = 1.5, petal_a = 3, petal_move_xy = 5, petal_color_center = moma.colors("Warhol",15)[4],petal_color = colores)
 ggsave("core_rizo_hongos.svg",venn_hongos_rizo_plot,device = "svg")
 venn_hongos_rizo_core$data_summary %>% .[.[, 1] > 20, ]
 
@@ -169,5 +169,15 @@ abundancias_hongos_rizo_core$total<-rowSums(abundancias_hongos_rizo_core[2:6])
 abundancias_hongos_rizo_core<-arrange(abundancias_hongos_rizo_core,total)
 abundancias_hongos_rizo_core1<-subset(abundancias_hongos_rizo_core,Genus!="g__")
 
-
+abundancias_bacterias_core1
 View(identidad_hongos_rizo)
+
+write_xlsx(identidad_bacterias_filo, "core_bacterias_filo.xlsx")
+write_xlsx(identidad_bacterias_rizo, "core_bacterias_rizo.xlsx")
+write_xlsx(identidad_hongos_filo, "core_hongos_filo.xlsx")
+write_xlsx(identidad_hongos_rizo, "core_hongos_rizo.xlsx")
+
+core<-unique(c(identidad_bacterias_filo$asv,identidad_bacterias_rizo$asv,identidad_hongos_rizo$asv,identidad_hongos_filo))
+
+core<-as.data.frame(core)
+write_xlsx(core,"core_full.xlsx")
