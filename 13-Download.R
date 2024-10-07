@@ -1,4 +1,4 @@
-# Download plots in high quality 
+# Download 
 
 # alpha
 
@@ -44,3 +44,19 @@ rda_hongos<-rda_hongos_filo_plot+rda_hongos_rizo_plot
 ggsave("rda_bacterias.png",rda_bacterias,width=14,height = 7)
 ggsave("rda_hongos.png",rda_hongos,width=14,height = 7)
 
+#Core
+
+ggsave(filename="core_bacterias_filo.png",interseccion_bacterias_filo)
+ggsave(filename="core_bacterias_rizo.png",interseccion_bacterias_rizo)
+ggsave(filename="core_hongos_filo.png",interseccion_hongos_filo)
+ggsave(filename="core_hongos_rizo.png",interseccion_hongos_rizo)
+
+
+write_xlsx(identidad_bacterias_filo, "core_bacterias_filo.xlsx")
+write_xlsx(identidad_bacterias_rizo, "core_bacterias_rizo.xlsx")
+write_xlsx(identidad_hongos_filo, "core_hongos_filo.xlsx")
+write_xlsx(identidad_hongos_rizo, "core_hongos_rizo.xlsx")
+
+
+ggsave("sample_core.svg",core_persample,device = "svg",width=15,height=9.5,units="in")
+ggsave("vector_core.svg",core_plot,device = "svg",width=15,height=9.5,units="in")
