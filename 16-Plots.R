@@ -202,3 +202,9 @@ plot_ancom_total_filo<-(ancom_plot_bacterias_filo/ancom_plot_hongos_filo)
 plot_ancom_total_rizo<-(ancom_plot_bacterias_rizo/ancom_plot_hongos_rizo)
 plot_ancom_total_filo
 plot_ancom_total_rizo
+
+#RDA
+
+rda_plot<-rda_bacterias_filo_plot+rda_bacterias_rizo_plot+rda_hongos_filo_plot+rda_hongos_rizo_plot+plot_layout(guides = "collect")
+rda_plot
+
