@@ -1,4 +1,4 @@
-#Filosfera
+#Phyllosphere
 
 bacterias_filosfera_ancom<-subset_samples(bacterias_filosfera,id!="BF5B")
 ancom_clase_bacterias_filosfera<-ancombc(bacterias_filosfera_ancom,assay_name = counts,tax_level = "Phylum",group = "Altitud",formula = "Altitud")
@@ -16,6 +16,9 @@ ancom_subset_bacterias_filo<-ancom_subset_bacterias_filo[,2:7]
 ancom_subset_bacterias_filo<-gather(ancom_subset_bacterias_filo,LFC_1978,LFC_2007,LFC_2178,LFC_2210,key="Elevation",value="LFC")
 
 ancom_subset_bacterias_filo<-subset(ancom_subset_bacterias_filo,taxon!="Pezizomycotina_cls_Incertae_sedis")
+
+#Plot
+
 ancom_plot_bacterias_filo<-ggplot(data=ancom_subset_bacterias_filo,aes(x=taxon,y=LFC,fill=taxon))+
   geom_col(color="black")+
   facet_wrap(~Elevation,ncol=5,nrow=1,labeller = labeller(Elevation=c("LFC_1978"="1978m","LFC_2007"="2007m","LFC_2018"="2018m","LFC_2178"="2178m","LFC_2210"="2210m")
@@ -38,7 +41,6 @@ ancom_plot_bacterias_filo
 
 # Rhizosphere
 
-
 ancom_clase_bacterias_rizosfera<-ancombc(bacterias_rizosfera,assay_name = counts,tax_level = "Phylum",group = "Altitud",formula = "Altitud")
 
 ancom_subset_bacterias_rizo<-left_join(ancom_clase_bacterias_rizosfera$res$lfc,ancom_clase_bacterias_rizosfera$res$diff_abn, by="taxon")
@@ -53,7 +55,7 @@ ancom_subset_bacterias_rizo<-subset(ancom_subset_bacterias_rizo,tax_level=="Phyl
 ancom_subset_bacterias_rizo<-ancom_subset_bacterias_rizo[,2:7]
 ancom_subset_bacterias_rizo<-gather(ancom_subset_bacterias_rizo,LFC_1978,LFC_2007,LFC_2018,LFC_2178,LFC_2210,key="Elevation",value="LFC")
 
-
+#Plot
 
 ancom_plot_bacterias_rizo<-ggplot(data=ancom_subset_bacterias_rizo,aes(x=taxon,y=LFC,fill=taxon))+
   geom_col(color="black")+
