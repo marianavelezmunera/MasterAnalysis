@@ -1,5 +1,5 @@
 #PCoAs por muestra
-
+# Phyllosphere
 pcoa_unifrac_bacterias_filosfera<-ordinate(bacterias_filosfera,method = "PCoA",distance = unifrac_filosfera_bacterias)
 pcoa_bray_bacterias_filosfera<-ordinate(bacterias_filosfera,method = "PCoA",distance = bray_filosfera_bacterias)
 pcoa_wunifrac_bacterias_filosfera<-ordinate(bacterias_filosfera,method = "PCoA",distance = wunifrac_filosfera_bacterias)
@@ -23,6 +23,7 @@ pcoa_unifrac_bacterias_rizosfera<-ordinate(bacterias_rizosfera,method = "PCoA",d
 pcoa_bray_bacterias_rizosfera<-ordinate(bacterias_rizosfera,method = "PCoA",distance = bray_rizosfera_bacterias)
 pcoa_wunifrac_bacterias_rizosfera<-ordinate(bacterias_rizosfera,method = "PCoA",distance = wunifrac_rizosfera_bacterias)
 
+#Rhizosphere
 plot_ordination(bacterias_rizosfera,pcoa_unifrac_bacterias_rizosfera,color="Altitud")+
   theme_biome_utils()+
   theme(legend.position = "right")+

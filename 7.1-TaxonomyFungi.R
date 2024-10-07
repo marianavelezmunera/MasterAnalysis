@@ -17,6 +17,7 @@ total_hongos@sam_data[total_hongos@sam_data=="Filosfera"]<-"Phyllosphere"
 total_hongos@sam_data[total_hongos@sam_data=="Rizosfera"]<-"Rhizosphere"
 total_hongos@sam_data[total_hongos@sam_data=="Bulk soil"]<-"Soil"
 
+#Plot
 
 
 plot_composition(total_hongos,group_by = "Tipo_muestra",sample.sort = "Altitud")+
