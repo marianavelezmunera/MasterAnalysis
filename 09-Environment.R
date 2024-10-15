@@ -80,42 +80,45 @@ ggtheme_config<-list(
 a<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=T_prom_jul,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config+
-  ylab("Temperature (C°)")
+  ylab("Temperature (C°) *")
 a
 b<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=HR_prom_jul,fill=Altitud))+
-  geom_point(color="black",size=0.5)+
+  geom_point(size=5,color="black",shape=21)+
+  scale_fill_manual(values=colores)+
   ggtheme_config+
-  ylab("Relative humidity (%)")
-
+  ylab("Relative humidity (%) *")
+b
 c<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=Luz_prom_jul,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config+
   ylab("Light (lux)")
 d<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=pH,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
-  ggtheme_config
+  ggtheme_config+
+  ylab("pH *")
 e<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=CE,fill=Altitud))+
-  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+ylab("EC")+
+  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+ylab("Electrical Conductivity *")+
   ggtheme_config
 
 g<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=N,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config
 h<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=Ptotal,fill=Altitud))+
-  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+ylab("Total phosphorus")+
+  geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+ylab("Total phosphorus *")+
   ggtheme_config
 i<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=K,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config
 j<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=NO3,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
-  ggtheme_config
+  ggtheme_config+
+  ylab("NO3*")
 k<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=NH4,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
   ggtheme_config
 l<-ggplot(data = metadatos_hongos[1:34,],aes(x=Altitud,y=Fe,fill=Altitud))+
   geom_boxplot(color="black",linewidth=0.25,outlier.size = 0.25)+
-  ggtheme_config
+  ggtheme_config+ylab("Fe *")
 
 ambiente<-a+b+c+d+e+g+h+i+j+k+l
 ambiente

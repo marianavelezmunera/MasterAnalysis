@@ -37,7 +37,7 @@ shannon_bacterias_filo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_mues
   ggtitle("a.Bacterial phyllosphere")+
   theme(plot.title = element_text(size=16))+
   theme(axis.title = element_text(size=16))
-
+shannon_bacterias_filo
 shannon_bacterias_rizo<-ggplot(data = subset(diversidad_alfa_bacterias,Tipo_muestra=="Rizosfera"),aes(x=Altitud, y=diversity_shannon,fill=Altitud))+
   geom_point(aes(fill=Altitud),shape=21,size=5,colour="black")+
   theme_biome_utils()+
