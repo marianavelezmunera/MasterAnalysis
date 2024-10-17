@@ -39,8 +39,8 @@ rda_bacterias_filo_plot<-rda_bacterias_filo %>%
     constraints = colnames(rda_bacterias_filo@sam_data)[c(18,20,22,23,24,28,35,37)],method = "RDA",
     scale_cc = FALSE) %>% 
   ord_plot(colour="Altitud",plot_taxa = clases_rda_bacterias[c(10,1,6,5,7),1],size=3,
-           constraint_lab_style = constraint_lab_style(size = 5),constraint_vec_length = 5,tax_vec_length = 5,auto_caption = NA,
-           tax_lab_style = tax_lab_style(size = 5))+
+           constraint_lab_style = constraint_lab_style(size = 5),constraint_vec_length = 4,tax_vec_length = 4,auto_caption = NA,
+           tax_lab_style = tax_lab_style(size = 4.5))+
   scale_color_manual(name="Elevation",values=colores)+
   theme_biome_utils()+
   ggtitle("a. Bacterial phyllosphere")+
@@ -89,8 +89,8 @@ rda_bacterias_rizo_plot<-rda_bacterias_rizo %>%
     constraints = colnames(rda_bacterias_rizo@sam_data)[c(18,20,22,23,24,28,35,37)],method = "RDA",
     scale_cc = FALSE) %>% 
   ord_plot(colour="Altitud",plot_taxa = clases_rda_bacterias[c(9,1,3,11,7),1],size=3,
-           constraint_lab_style = constraint_lab_style(size = 5),constraint_vec_length = 5,tax_vec_length = 5,auto_caption = NA,
-           tax_lab_style = tax_lab_style(size = 5))+
+           constraint_lab_style = constraint_lab_style(size = 5),constraint_vec_length = 4,tax_vec_length = 4,auto_caption = NA,
+           tax_lab_style = tax_lab_style(size = 4.5))+
   scale_color_manual(name="Elevation",values=colores)+
   theme_biome_utils()+
   ggtitle("b. Bacterial rhizosphere")+
